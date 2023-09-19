@@ -2,11 +2,14 @@
   "name": "symbols-translator",
   "version": "1.0.0",
   "description": "",
-  "main": "src/translator.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
     "start:cli": "node src/server.js"
   },
   "author": "Giorgi Burduli",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "symbols-translator-package": "^1.0.0"
+  }
 }
