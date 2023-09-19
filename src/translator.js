@@ -23,7 +23,7 @@ function parseStyle(styleStr) {
   return styles;
 }
 
-function translator(html) {
+function translator(html, returnJson = true) {
   const stack = [];
   let currentObject = { children: [] };
 
@@ -60,9 +60,12 @@ function translator(html) {
     return "";
   });
 
-  return currentObject.children.length > 0
-    ? currentObject.children[0]
-    : currentObject;
+  const output =
+    currentObject.children.length > 0
+      ? currentObject.children[0]
+      : currentObject;
+
+  return returnJson ? JSON.stringify(output, null, 2) : output;
 }
 
 module.exports = translator;
