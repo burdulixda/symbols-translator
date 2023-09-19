@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Symbols Translator Server</title>
+  </head>
+  <style>
+    body,
+    html {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #htmlForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #htmlForm > textarea {
+      margin-bottom: 10px;
+    }
+  </style>
+  <body>
+    <form id="htmlForm" onsubmit="convert(event)">
+      <textarea name="htmlInput" id="htmlInput" cols="30" rows="10"></textarea>
+      <button type="submit">Convert</button>
+    </form>
+
+    <pre id="jsonOutput"></pre>
+
+    <script>
+      async function convert(event) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const html = formData.get("htmlInput");
+
+        const response = await fetch("/", {
+          method: "POST",
+          body: html,
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        });
+
+        const result = await response.json();
+        document.querySelector("#jsonOutput").innerText = JSON.stringify(
+          result,
+          null,
+          2
+        );
+      }
+    </script>
+  </body>
+</html>
