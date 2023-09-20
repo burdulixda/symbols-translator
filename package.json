@@ -10,6 +10,6 @@
   "author": "Giorgi Burduli",
   "license": "ISC",
   "dependencies": {
-    "symbols-translator-package": "^1.0.0"
+    "symbols-translator-package": "latest"
   }
 }
